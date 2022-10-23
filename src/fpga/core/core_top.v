@@ -250,12 +250,11 @@ assign cart_pin30_pwroff_reset = 1'b0;  // hardware can control this
 assign cart_tran_pin31 = 1'bz;      // input
 assign cart_tran_pin31_dir = 1'b0;  // input
 
-// link port is input only
 assign port_tran_so = 1'bz;
 assign port_tran_so_dir = 1'b0;     // SO is output only
-assign port_tran_si = 1'bz;
+// assign port_tran_si = 1'bz;
 assign port_tran_si_dir = 1'b0;     // SI is input only
-assign port_tran_sck = 1'bz;
+// assign port_tran_sck = 1'bz;
 assign port_tran_sck_dir = 1'b0;    // clock direction can change
 assign port_tran_sd = 1'bz;
 assign port_tran_sd_dir = 1'b0;     // SD is input and not used
@@ -539,16 +538,19 @@ always @(posedge clk_core_12288 or negedge reset_n) begin
                 // data enable. this is the active region of the line
                 vidout_de <= 1;
                 
-                vidout_rgb[23:16] <= 8'd60;
-                vidout_rgb[15:8]  <= 8'd60;
-                vidout_rgb[7:0]   <= 8'd60;
-                
+                if (w_spi_dv) begin
+                    vidout_rgb[23:16] <= w_spi_byte;
+                    vidout_rgb[15:8]  <= w_spi_byte;
+                    vidout_rgb[7:0]   <= w_spi_byte;
+                end else begin
+                    vidout_rgb[23:16] <= 8'd00;
+                    vidout_rgb[15:8]  <= 8'd00;
+                    vidout_rgb[7:0]   <= 8'd00;
+                end
             end 
         end
     end
 end
-
-
 
 
 //
@@ -597,6 +599,27 @@ always @(negedge audgen_sclk) begin
     end 
 end
 
+//
+// spi slave
+//
+
+    wire        w_spi_dv;
+    wire [7:0]  w_spi_byte;
+
+SPI_slave slave (
+    .i_Rst_L          ( reset_n ),        // FPGA Reset, active low
+    .i_Clk            ( clk_74a ),        // FPGA Clock
+    .o_RX_DV          ( w_spi_dv ),       // Data Valid pulse (1 clock cycle)
+    .o_RX_Byte        ( w_spi_byte ),     // Byte received on MOSI
+    .i_TX_DV          (),                 // Data Valid pulse to register i_TX_Byte
+    .i_TX_Byte        (),                 // Byte to serialize to MISO.
+
+    // SPI Interface
+    .i_SPI_Clk        ( port_tran_sck ),
+    .o_SPI_MISO       ( port_tran_so  ),
+    .i_SPI_MOSI       ( port_tran_si  ),
+    .i_SPI_CS_n       ( 0 )               // active low
+);
 
 ///////////////////////////////////////////////
 
