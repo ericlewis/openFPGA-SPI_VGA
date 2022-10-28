@@ -135,10 +135,10 @@ localparam  [3:0]   ST_DONE_ERR     = 'd15;
     reg     [31:0]  target_4 = 'h20;
     reg     [31:0]  target_8 = 'h40;
     
-    reg     [31:0]  target_20; // parameter data
-    reg     [31:0]  target_24;
-    reg     [31:0]  target_28;
-    reg     [31:0]  target_2C;
+    reg     [31:0]  target_20 = 0; // parameter data
+    reg     [31:0]  target_24 = 0;
+    reg     [31:0]  target_28 = 0;
+    reg     [31:0]  target_2C = 0;
     
     reg     [31:0]  target_40; // response data
     reg     [31:0]  target_44;

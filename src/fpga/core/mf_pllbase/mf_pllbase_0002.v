@@ -29,7 +29,7 @@ module  mf_pllbase_0002(
 	altera_pll #(
 		.fractional_vco_multiplier("true"),
 		.reference_clock_frequency("74.25 MHz"),
-		.operation_mode("normal"),
+		.operation_mode("direct"),
 		.number_of_clocks(5),
 		.output_clock_frequency0("12.287999 MHz"),
 		.phase_shift0("0 ps"),

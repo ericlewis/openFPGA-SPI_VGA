@@ -1,7 +1,15 @@
 {
     "interact": {
         "magic": "APF_VER_1",
-        "variables": [],
+        "variables": [
+            {
+                "name": "Data",
+                "id": 1,
+                "type": "number_u32",
+                "enabled": false,
+                "address": "0x00000000"
+            }
+        ],
         "messages": []
     }
 }

@@ -33,10 +33,10 @@ module SPI_Slave
    input  [7:0]     i_TX_Byte,  // Byte to serialize to MISO.
 
    // SPI Interface
-   input      i_SPI_Clk,
-   output reg o_SPI_MISO,
-   input      i_SPI_MOSI,
-   input      i_SPI_CS_n        // active low
+   input  wire      i_SPI_Clk,
+   output wire      o_SPI_MISO,
+   input  wire      i_SPI_MOSI,
+   input  wire      i_SPI_CS_n  // active low
    );
 
 

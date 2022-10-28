@@ -234,7 +234,7 @@ module  mf_pllbase
 		mf_pllbase_altera_pll_altera_pll_i_2475.n_cnt_lo_div = 1,
 		mf_pllbase_altera_pll_altera_pll_i_2475.n_cnt_odd_div_duty_en = "false",
 		mf_pllbase_altera_pll_altera_pll_i_2475.number_of_clocks = 5,
-		mf_pllbase_altera_pll_altera_pll_i_2475.operation_mode = "normal",
+		mf_pllbase_altera_pll_altera_pll_i_2475.operation_mode = "direct",
 		mf_pllbase_altera_pll_altera_pll_i_2475.output_clock_frequency0 = "12.287999 MHz",
 		mf_pllbase_altera_pll_altera_pll_i_2475.output_clock_frequency1 = "12.287999 MHz",
 		mf_pllbase_altera_pll_altera_pll_i_2475.output_clock_frequency10 = "0 MHz",
